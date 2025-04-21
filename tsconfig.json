@@ -12,6 +12,8 @@
       "@services/*": ["app/services/*"],
       "@assets/*": ["app/assets/*"],
       "@config/*": ["app/config/*"]
-    }
+    },
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
   }
 }
