@@ -1,11 +1,15 @@
 // screens/ProfileScreen.js
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import Header from '../component/Header';
 
 const Profile = () => {
   return (
+    <View style={{ flex: 1 }}>
+      <Header title="Profile" />
     <View style={styles.container}>
       <Text style={styles.text}>Profile</Text>
+    </View>
     </View>
   );
 };

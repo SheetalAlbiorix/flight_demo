@@ -8,6 +8,7 @@ import {
   Button,
 } from 'react-native';
 import useCalendarEvents from '@hooks/useCalendarEvents';
+import Header from '../component/Header';
 
 const CalendarEvents: React.FC = () => {
   const {events, error, refreshing, fetchEvents} = useCalendarEvents();
@@ -44,6 +45,8 @@ const CalendarEvents: React.FC = () => {
   }
 
   return (
+    <View style={{flex: 1}}>
+    <Header title="Calender Event" />
     <View style={styles.container}>
       <FlatList
         data={events}
@@ -54,6 +57,7 @@ const CalendarEvents: React.FC = () => {
           <RefreshControl refreshing={refreshing} onRefresh={fetchEvents} />
         }
       />
+    </View>
     </View>
   );
 };
