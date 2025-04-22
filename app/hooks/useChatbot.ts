@@ -1,8 +1,7 @@
 import {useState} from 'react';
 import axios from 'axios';
 
-const OPENAI_API_KEY =
-  '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';
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY || '';
 
 export const useChatbot = () => {
   const [messages, setMessages] = useState<{role: string; content: string}[]>([
