@@ -11,7 +11,8 @@
       "@navigation/*": ["app/navigation/*"],
       "@services/*": ["app/services/*"],
       "@assets/*": ["app/assets/*"],
-      "@config/*": ["app/config/*"]
+      "@config/*": ["app/config/*"],
+      "@store/*": ["app/store/*"]
     },
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true
