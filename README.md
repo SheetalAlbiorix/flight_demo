@@ -4,10 +4,10 @@
 https://github.com/user-attachments/assets/26a0a470-6671-46c8-9ec9-08910366a7f3
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/8d3a117e-ac8f-4410-9876-5ef427c9c329" width="45%" />
-  <img src="https://github.com/user-attachments/assets/6380773f-1c14-469b-a4bb-9f34363682e7" width="45%" />
+  <img src="https://github.com/user-attachments/assets/6380773f-1c14-469b-a4bb-9f34363682e7" width="30%" />
+  <img src="https://github.com/user-attachments/assets/8d3a117e-ac8f-4410-9876-5ef427c9c329" width="30%" />
+  <img src="https://github.com/user-attachments/assets/57e598de-2f41-4d5d-8ee8-84345c054f07" width="30%" />
 </p>
-
 
 
 ## ✈️ Flight Email Parser - React Native Project
