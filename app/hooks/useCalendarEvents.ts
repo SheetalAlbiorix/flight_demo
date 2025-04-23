@@ -42,18 +42,18 @@ const useCalendarEvents = (): UseCalendarEventsReturn => {
         );
 
         // Filter upcoming events, include specific keywords in title or description, and sort by date
-        // const includedKeywords = ['Flight', 'Booking', 'Amazon', 'Movie'];
+        const includedKeywords = ['Flight', 'Booking', 'Amazon', 'Movie'];
         const upcomingEvents = fetchedEvents
           .filter(
-            event => new Date(event.startDate) > new Date(),
-            // &&
-            //   includedKeywords.some(
-            //     keyword =>
-            //       event.title?.toLowerCase().includes(keyword.toLowerCase()) ||
-            //       event.description
-            //         ?.toLowerCase()
-            //         .includes(keyword.toLowerCase()),
-            //   ),
+            event =>
+              new Date(event.startDate) > new Date() &&
+              includedKeywords.some(
+                keyword =>
+                  event.title?.toLowerCase().includes(keyword.toLowerCase()) ||
+                  event.description
+                    ?.toLowerCase()
+                    .includes(keyword.toLowerCase()),
+              ),
           )
           .sort(
             (a, b) =>

@@ -1,99 +1,81 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+## You can watch the demo of the app in action here:
 
-# Getting Started
+## ✈️ Flight Email Parser - React Native Project
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+This project extracts structured flight details (like flight number, departure/arrival time and airport codes) from raw email content.
 
-## Step 1: Start Metro
+## 📦 Features
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+- ✅ Parses raw flight confirmation emails
+- ✅ Extracts:
+  - Flight number
+  - Departure/Arrival airport codes
+  - Departure/Arrival times
+  - Airline name
+- ✅ Skips outdated/past flights
+- ✅ Supports multiple formats using flexible RegExp parsing
+- ✅ ChatBot using OpenAI's Rest API.
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+## 🧠 How It Works
 
-```sh
-# Using npm
-npm start
+The core logic is powered by regular expressions and JavaScript Date parsing to identify and convert relevant data from unstructured email text.
 
-# OR using Yarn
-yarn start
+## 🛠 Tech Stack
+
+- **React Native** – Cross-platform mobile development
+- **Typescript (ES6)** – Core language used throughout the app
+- **Regex (Regular Expressions)** – For parsing unstructured email content
+- **Redux Toolkit**
+- **Gmail API and Google Auth** - For fetching the emails.
+
+## 📂 Folder Structure
+
+```
+├── app/
+│   ├── components/       # Reusable UI components
+│   ├── screens/          # Application screens
+│   ├── services/         # API service logic
+│   ├── navigation/       # Navigation setup
+│   ├── store/            # Redux store and slices
+│   ├── utils/            # Utility functions
+│   └── assets/           # Static assets (images, fonts, etc.)
+├── ios/                  # iOS-specific files
+├── android/              # Android-specific files
+├── .env                  # Environment variables
+├── package.json          # Project dependencies and scripts
+└── README.md             # Project documentation
 ```
 
-## Step 2: Build and run your app
+## 🚀 Steps to Installation
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+1. **Clone the Repository**
 
-### Android
+2. **Install Dependencies**:
 
-```sh
-# Using npm
-npm run android
+   ```bash
+   npm install
+   ```
 
-# OR using Yarn
-yarn android
-```
+3. **Set Up Environment Variables**:
 
-### iOS
+   - Create a `.env` file in the root directory.
+   - Add the following variables:
+     ```
+     OPENAI_API_KEY=your_openai_api_key
+     GOOGLE_IOS_CLIENT_ID=your_google_ios_client_id
+     ```
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+4. **Run the App**:
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+   - For iOS:
+     ```bash
+     npx pod-install
+     npm run ios
+     ```
+   - For Android:
+     ```bash
+     npm run android
+     ```
 
-```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
-
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
-# rn-boilerplate
-# rn-boilerplate
+5. **Enjoy the App**:
+   - Parse flight emails and interact with the ChatBot for flight details.

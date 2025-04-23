@@ -1,24 +1,18 @@
-import Imap from 'node-imap';
+export const parseFlightDetailsFromEmail = (buffer: string) => {
+  const extract = (regex: RegExp, text: string): string | null => {
+    const match = text.match(regex);
+    return match?.[1]?.trim() || null;
+  };
 
-export const fetchFlightEmails = async (email, password) => {
-  const imap = new Imap({
-    user: email,
-    password: password,
-    host: 'imap.gmail.com',
-    port: 993,
-    tls: true,
+  const flightNumber =
+    extract(/Flight\s*Number[:\-]?\s*([A-Z]{2}[0-9]{1,4})\b/i, buffer) ||
+    extract(/\b([A-Z]{2}[0-9]{1,4})\b(?!\s*[a-z])/i, buffer);
+
+  console.log('Parsed Flight Details:', {
+    flightNumber,
   });
 
-  return new Promise((resolve, reject) => {
-    imap.once('ready', () => {
-      imap.openBox('INBOX', true, (err, box) => {
-        if (err) return reject(err);
-        // Fetch emails and parse flight information here
-        resolve([]);
-      });
-    });
-
-    imap.once('error', err => reject(err));
-    imap.connect();
-  });
+  return {
+    flightNumber: flightNumber?.toUpperCase() || null,
+  };
 };

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, {useState, useRef} from 'react';
 import {
   View,
   TextInput,
@@ -10,12 +10,14 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import { useChatbot } from '@hooks/useChatbot';
+import {useChatbot} from '@hooks/useChatbot';
 import Header from '../component/Header';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const ChatBot = () => {
-  const { messages, loading, predefinedQuestions, sendMessage } = useChatbot();
+const ChatBot = ({route}: {route: any}) => {
+  const {flights} = route.params || {};
+  const {messages, loading, predefinedQuestions, sendMessage} =
+    useChatbot(flights);
   const [input, setInput] = useState('');
   const flatListRef = useRef<FlatList>(null);
 
@@ -26,30 +28,28 @@ const ChatBot = () => {
 
   const handleSend = () => {
     if (!input.trim()) return;
+
     sendMessage(input);
     setInput('');
-    setTimeout(() => flatListRef.current?.scrollToEnd({ animated: true }), 100);
+    setTimeout(() => flatListRef.current?.scrollToEnd({animated: true}), 100);
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{flex: 1}}>
       <Header title="Chat Bot" />
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-        style={styles.container}
-      >
+        style={styles.container}>
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
           style={styles.suggestionsContainer}
-          contentContainerStyle={styles.suggestionsContent}
-        >
+          contentContainerStyle={styles.suggestionsContent}>
           {predefinedQuestions.map((question, index) => (
             <TouchableOpacity
               key={index}
               style={styles.suggestionButton}
-              onPress={() => handlePredefinedQuestion(question)}
-            >
+              onPress={() => handlePredefinedQuestion(question)}>
               <Text style={styles.suggestionText}>{question}</Text>
             </TouchableOpacity>
           ))}
@@ -59,17 +59,16 @@ const ChatBot = () => {
           ref={flatListRef}
           data={messages}
           keyExtractor={(_, index) => index.toString()}
-          renderItem={({ item }) => (
+          renderItem={({item}) => (
             <View
               style={[
                 styles.messageContainer,
                 item.role === 'user' ? styles.userMessage : styles.botMessage,
-              ]}
-            >
+              ]}>
               <Text style={styles.messageText}>{item.content}</Text>
             </View>
           )}
-          contentContainerStyle={{ paddingBottom: 20 }}
+          contentContainerStyle={{paddingBottom: 20}}
         />
 
         <View style={styles.inputContainer}>
@@ -83,11 +82,7 @@ const ChatBot = () => {
           <TouchableOpacity
             onPress={handleSend}
             disabled={loading}
-            style={[
-              styles.sendButton,
-              loading && { backgroundColor: '#ccc' },
-            ]}
-          >
+            style={[styles.sendButton, loading && {backgroundColor: '#ccc'}]}>
             <Icon name="send" size={20} color="#fff" />
           </TouchableOpacity>
         </View>
@@ -97,7 +92,7 @@ const ChatBot = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 10 },
+  container: {flex: 1, padding: 10},
   messageContainer: {
     marginVertical: 6,
     padding: 12,

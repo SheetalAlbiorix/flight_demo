@@ -1,121 +1,169 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const FlightCard = ({ flight, onPress }) => {
+const FlightCard = ({
+  airlineName,
+  onPress,
+  departureTime,
+  departureFrom,
+  arrivalTime,
+  arrivalFrom,
+  pnr,
+  bookingDate,
+  additionalNotes,
+}) => {
   return (
     <TouchableOpacity style={styles.card} onPress={onPress}>
-      <View style={styles.header}>
-        <Image
-          source={require('../assets/air_asia_logo.png')}
-          style={styles.logo}
-        />
-        <Text style={styles.airlineText}>{flight.airline} • {flight.flightNumber}</Text>
-      </View>
+      {airlineName && (
+        <View style={styles.header}>
+          <Text style={styles.airlineText}>{airlineName}</Text>
+        </View>
+      )}
 
       <View style={styles.timeRow}>
-        <View>
-        <Text style={styles.timeText}>{flight.departureTime}</Text>
-        <Text style={styles.cityText}>{flight.departure}</Text>
+        <View style={styles.locationWrapper}>
+          <Text style={styles.cityText}>{departureFrom || 'N/A'}</Text>
+          <Text style={styles.timeText}>{departureTime || 'N/A'}</Text>
         </View>
-        <View style={styles.durationWrapper}>
-          <Text style={styles.durationText}>{flight.duration}</Text>
-          <View style={{padding: 10 }}>
-            <View style={styles.airLineCont}></View>
-            <Icon name="airplane" size={20} color="#000" style={styles.airStopLogo} />
-          </View>
-          <Text style={styles.stopText}>{flight.stops}</Text>
+
+        <View style={styles.lineWrapper}>
+          <View style={styles.line} />
+          <Icon
+            name="airplane"
+            size={20}
+            color="#6B7280"
+            style={styles.planeIcon}
+          />
+          <View style={styles.line} />
         </View>
-        <View>
-        <Text style={styles.timeText}>{flight.arrivalTime}</Text>
-        <Text style={styles.cityText}>{flight.arrival}</Text>
+
+        <View style={styles.locationWrapper}>
+          <Text style={styles.cityText}>{arrivalFrom || 'N/A'}</Text>
+          <Text style={styles.timeText}>{arrivalTime || 'N/A'}</Text>
         </View>
       </View>
 
+      {pnr && (
+        <View style={styles.pnrContainer}>
+          <Text style={styles.pnrLabel}>PNR:</Text>
+          <Text style={styles.pnrText}>{pnr}</Text>
+        </View>
+      )}
 
-      <View style={styles.priceCountainer}>
-        <Text style={styles.perAdult}>Per Adult</Text>
-        <Text style={styles.price}>₹{flight.price}</Text>
-      </View>
+      {bookingDate && (
+        <View style={styles.bookingContainer}>
+          <Text style={styles.bookingLabel}>Booking Date:</Text>
+          <Text style={styles.bookingText}>{bookingDate}</Text>
+        </View>
+      )}
+
+      {additionalNotes && (
+        <View style={styles.notesContainer}>
+          <Text style={styles.notesLabel}>Additional Notes:</Text>
+          <Text style={styles.notesText}>{additionalNotes}</Text>
+        </View>
+      )}
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  priceCountainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: 12,
-  },
   card: {
     backgroundColor: '#FFFFFF',
     borderRadius: 16,
-    padding: 16,
+    padding: 20,
     marginBottom: 16,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 5,
+    overflow: 'hidden',
   },
   header: {
-    flexDirection: 'row',
-    alignItems: 'center',
     marginBottom: 12,
   },
-  logo: {
-    width: 30,
-    height: 30,
-    resizeMode: 'contain',
-    marginRight: 8,
-  },
   airlineText: {
-    fontSize: 14,
+    fontSize: 16,
     color: '#111827',
     fontWeight: '600',
   },
   timeRow: {
     flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'space-between',
+    marginTop: 8,
   },
-  timeText: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: '#111827',
-  },
-  durationWrapper: {
+  locationWrapper: {
+    flex: 2, // Adjusted flex to ensure proper spacing
     alignItems: 'center',
   },
-  durationText: {
-    fontSize: 12,
-    color: '#6B7280',
-  },
-  stopText: {
-    fontSize: 12,
-    color: '#6B7280',
-  },
   cityText: {
-    fontSize: 12,
-    color: '#9CA3AF',
-  },
-  price: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: '700',
     color: '#111827',
-    textAlign: 'right',
+    textAlign: 'center',
   },
-  perAdult: {
-    fontSize: 12,
+  timeText: {
+    fontSize: 14,
     color: '#6B7280',
-    fontWeight: '400',
-    textAlign: 'right',
+    marginTop: 4,
+    textAlign: 'center',
   },
-  airStopLogo: {
-    position: 'absolute',
-    left: '50%',
+  lineWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1, // Reduced flex to prevent pushing content
   },
-  airLineCont: {
-    borderColor: '#000',
-    borderTopWidth: 1,
-    width: 100,
-    borderStyle: 'solid',
-  }
+  line: {
+    height: 1,
+    backgroundColor: '#D1D5DB',
+    flex: 1,
+  },
+  planeIcon: {
+    marginHorizontal: 8,
+  },
+  pnrContainer: {
+    marginTop: 16,
+  },
+  pnrLabel: {
+    fontSize: 13,
+    color: '#6B7280',
+    fontWeight: '600',
+  },
+  pnrText: {
+    fontSize: 15,
+    color: '#111827',
+    fontWeight: '700',
+  },
+  bookingContainer: {
+    marginTop: 16,
+  },
+  bookingLabel: {
+    fontSize: 13,
+    color: '#6B7280',
+    fontWeight: '600',
+  },
+  bookingText: {
+    fontSize: 15,
+    color: '#111827',
+    fontWeight: '700',
+  },
+  notesContainer: {
+    marginTop: 16,
+  },
+  notesLabel: {
+    fontSize: 13,
+    color: '#6B7280',
+    fontWeight: '600',
+  },
+  notesText: {
+    fontSize: 15,
+    color: '#111827',
+    fontWeight: '700',
+  },
 });
 
 export default FlightCard;
