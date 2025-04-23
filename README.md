@@ -1,5 +1,13 @@
 ## You can watch the demo of the app in action here:
 
+
+https://github.com/user-attachments/assets/26a0a470-6671-46c8-9ec9-08910366a7f3
+
+![Simulator Screenshot - iPhone 16 Pro - 2025-04-24 at 00 08 19](https://github.com/user-attachments/assets/8d3a117e-ac8f-4410-9876-5ef427c9c329)
+![Simulator Screenshot - iPhone 16 Pro - 2025-04-24 at 00 08 13](https://github.com/user-attachments/assets/6380773f-1c14-469b-a4bb-9f34363682e7)
+
+
+
 ## ✈️ Flight Email Parser - React Native Project
 
 This project extracts structured flight details (like flight number, departure/arrival time and airport codes) from raw email content.
